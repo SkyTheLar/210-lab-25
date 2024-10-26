@@ -24,40 +24,52 @@ int main() {
 	set<string> set;
 
 	//initialize results arrays
-	int vectorRs[RACE_NUM], listRs[RACE_NUM], setRs[RACE_NUM];
+	double vectorRs[RACE_NUM], listRs[RACE_NUM], setRs[RACE_NUM];
 
     //open file
-	ifstream in("codes.txt");
+	ifstream in;
+	in.open("codes.txt");
+
+	//declare temp string
+	string temp;
 
 	//read to vector
 	auto start = high_resolution_clock::now();
 
-	string temp;
 	while (in >> temp)
 		vector.push_back(temp);
 
 	auto stop = high_resolution_clock::now();
-	vectorRs[0] = duration_cast<milliseconds>(stop - start);
+	auto duration = duration_cast<milliseconds>(stop - start);
+	vectorRs[0] = duration.count();
+
+	in.beg();
 
 	//read to list
 	start = high_resolution_clock::now();
 
-	string temp;
 	while (in >> temp)
 		list.push_back(temp);
 
 	stop = high_resolution_clock::now();
-	listRs[0] = duration_cast<milliseconds>(stop - start);
+	duration = duration_cast<milliseconds>(stop - start);
+	listRs[0] = duration.count();
 
 	//read to set
 	start = high_resolution_clock::now();
 
-	string temp;
 	while (in >> temp)
 		set.insert(temp);
 
 	stop = high_resolution_clock::now();
-	setRs[0] = duration_cast<milliseconds>(stop - start);
+	duration = duration_cast<milliseconds>(stop - start);
+	setRs[0] = duration.count();
+
+	//close file
+	in.close();
+
+	cout << vectorRs[0] << " " << listRs[0] << " " << setRs[0] << endl;
+	cout << vector.size() << " " << list.size() << " " << set.size();
 
     return 0;
 }
