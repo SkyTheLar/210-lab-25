@@ -100,8 +100,6 @@ int main() {
 	start = high_resolution_clock::now();
 
 	vector.insert(vector.begin() + (vector.size() / 2), "TESTCODE");
-	for (string s : vector)
-		cout << s << " ";
 
 	stop = high_resolution_clock::now();
 	duration = duration_cast<milliseconds>(stop - start);
@@ -109,8 +107,38 @@ int main() {
 
 
 	//insert TESTCODE into list
+	start = high_resolution_clock::now();
+
+	auto it = list.begin();
+	for (int i = 0; i < (list.size() / 2); i++)
+		it++;
+	list.insert(it, "TESTCODE");
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	listRs[2] = duration.count();
 
 	//insert TESTCODE into set
+	start = high_resolution_clock::now();
+
+	set.insert("TESTCODE");
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	setRs[2] = duration.count();
+
+	//delete the middle element of the vector
+	start = high_resolution_clock::now();
+
+	vector.erase(vector.begin() + (vector.size() / 2));
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	vectorRs[3] = duration.count();
+
+	//delete the middle element of the list
+
+	//delete the middle element of the set
 
     return 0;
 }
