@@ -5,6 +5,7 @@ COMSC 210 | Lab 25 | Skylar Robinson | IDE Used: Eclipse
 ******************************************************/
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <list>
 #include <set>
@@ -137,8 +138,30 @@ int main() {
 	vectorRs[3] = duration.count();
 
 	//delete the middle element of the list
+	start = high_resolution_clock::now();
+
+	it = list.begin();
+	for (int i = 0; i < (list.size() / 2); i++)
+		it++;
+	list.erase(it);
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	listRs[3] = duration.count();
 
 	//delete the middle element of the set
+	start = high_resolution_clock::now();
+
+	auto setIt = set.begin();
+	for (int i = 0; i < (set.size() / 2); i++)
+		setIt++;
+	set.erase(setIt);
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	setRs[3] = duration.count();
+
+	cout << setw(10) << "Operation" << "Vector" << "List" << "Set\n";
 
     return 0;
 }
