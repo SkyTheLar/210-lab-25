@@ -161,7 +161,12 @@ int main() {
 	duration = duration_cast<milliseconds>(stop - start);
 	setRs[3] = duration.count();
 
-	cout << setw(10) << "Operation" << "Vector" << "List" << "Set\n";
+	cout << "Time taken in milliseconds:\n";
+	cout << setw(10) << "Operation" << setw(10) << "Vector"
+		 << setw(10) << "List" << setw(10) << "Set" << endl;
+	for (int i = 0; i < 4; i++)
+		cout << setw(10) << races[i] << setw(10) << vectorRs[i]
+			 << setw(10) << listRs[i] << setw(10) << setRs[i] << endl;
 
     return 0;
 }
