@@ -8,6 +8,7 @@ COMSC 210 | Lab 25 | Skylar Robinson | IDE Used: Eclipse
 #include <vector>
 #include <list>
 #include <set>
+#include <algorithm>
 #include <fstream>
 #include <chrono>
 using namespace std;
@@ -74,8 +75,42 @@ int main() {
 	//close file
 	in.close();
 
-	cout << vectorRs[0] << " " << listRs[0] << " " << setRs[0] << endl;
-	cout << vector.size() << " " << list.size() << " " << set.size();
+	//sort the vector
+	start = high_resolution_clock::now();
+
+	sort(vector.begin(), vector.end());
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	vectorRs[1] = duration.count();
+
+	//sort the list
+	start = high_resolution_clock::now();
+
+	list.sort();
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	listRs[1] = duration.count();
+
+	//set is already sorted
+	setRs[1] = -1;
+
+	//insert TESTCODE into vector
+	start = high_resolution_clock::now();
+
+	vector.insert(vector.begin() + (vector.size() / 2), "TESTCODE");
+	for (string s : vector)
+		cout << s << " ";
+
+	stop = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(stop - start);
+	vectorRs[2] = duration.count();
+
+
+	//insert TESTCODE into list
+
+	//insert TESTCODE into set
 
     return 0;
 }
