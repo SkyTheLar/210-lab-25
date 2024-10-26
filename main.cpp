@@ -43,7 +43,9 @@ int main() {
 	auto duration = duration_cast<milliseconds>(stop - start);
 	vectorRs[0] = duration.count();
 
-	in.beg();
+	//reset file
+	in.clear();
+	in.seekg(0);
 
 	//read to list
 	start = high_resolution_clock::now();
@@ -54,6 +56,10 @@ int main() {
 	stop = high_resolution_clock::now();
 	duration = duration_cast<milliseconds>(stop - start);
 	listRs[0] = duration.count();
+
+	//reset file
+	in.clear();
+	in.seekg(0);
 
 	//read to set
 	start = high_resolution_clock::now();
